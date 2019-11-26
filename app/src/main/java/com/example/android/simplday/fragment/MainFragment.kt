@@ -6,8 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 
 import com.example.android.simplday.R
+import com.example.android.simplday.databinding.FragmentMainBinding
+import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
  * A simple [Fragment] subclass.
@@ -18,8 +23,17 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false)
+
+        val binding = DataBindingUtil.inflate<FragmentMainBinding>(
+            inflater,
+            R.layout.fragment_main, container, false
+        )
+        binding.fab.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.action_mainFragment_to_taskFragment)
+        }
+        return binding.root
+
+
     }
 
 

@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -18,8 +20,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        fab.setOnClickListener { view -> Toast.makeText(this, "You pushed the button",
-            Toast.LENGTH_SHORT).show() }
+
+
+        val navController = this.findNavController((R.id.myNavHostFragment))
+        NavigationUI.setupActionBarWithNavController(this, navController)
+    }
+
+    // support for the up button
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.myNavHostFragment)
+        return navController.navigateUp()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
