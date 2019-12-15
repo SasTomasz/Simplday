@@ -2,11 +2,13 @@ package com.example.android.simplday
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -15,11 +17,19 @@ import androidx.navigation.ui.NavigationUI
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    // view model for sharing data between fragment in this activity
+    private lateinit var viewModel: TaskViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        // view model initial
+        Log.i("Task Fragment", "Call ViewModelProviders.of")
+        viewModel = ViewModelProviders.of(this).get(TaskViewModel::class.java)
+
 
 
         val navController = this.findNavController((R.id.myNavHostFragment))
