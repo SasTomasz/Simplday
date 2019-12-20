@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toStartOf="@+id/tv_priority"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="This is example task name: clean your room"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <TextView
         android:id="@+id/tv_priority"
@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="A"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <EditText
         android:id="@+id/et_task_name"
@@ -50,7 +50,7 @@
         app:layout_constraintEnd_toStartOf="@+id/et_priority"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="gone" />
+        tools:visibility="visible" />
 
     <EditText
         android:id="@+id/et_priority"
@@ -63,6 +63,6 @@
         android:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="gone" />
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

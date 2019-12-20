@@ -8,3 +8,6 @@
         android:title="@string/action_settings"
         app:showAsAction="never" />
 </menu>
+
+
+<!--todo 04 create manu for fragment-->

@@ -33,6 +33,16 @@ class MainFragment : Fragment() {
         }
         return binding.root
 
+        /**
+         * todo 01 use binding utils in other ui controllers
+         *
+         * todo 02 try to add simple data in task_fragment and receive it in main fragment using
+         * todo 02 safe args
+         *
+         * todo 03 when you finish start next codelab Android Kotlin Fundamentals 05.2:
+         * todo 03 LiveData and LiveData observers
+         */
+
 
     }
 
