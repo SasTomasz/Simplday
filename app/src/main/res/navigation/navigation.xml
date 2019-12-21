@@ -22,9 +22,14 @@
             app:argType="string"
             android:defaultValue="D" />
     </fragment>
+
     <fragment
         android:id="@+id/taskFragment"
         android:name="com.example.android.simplday.fragment.TaskFragment"
         android:label="fragment_task"
-        tools:layout="@layout/fragment_task" />
+        tools:layout="@layout/fragment_task" >
+        <action
+            android:id="@+id/action_taskFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>
