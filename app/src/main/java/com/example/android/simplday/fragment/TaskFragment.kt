@@ -3,10 +3,9 @@ package com.example.android.simplday.fragment
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.android.simplday.MainActivity
@@ -27,10 +26,26 @@ class TaskFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         viewModel = ViewModelProviders.of(this).get(TaskViewModel::class.java)
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_task, container, false)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_task, menu)
+    }
 
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.menu_save -> {
+                Toast.makeText(context, "save clicked", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }

@@ -13,6 +13,14 @@
         <action
             android:id="@+id/action_mainFragment_to_taskFragment"
             app:destination="@id/taskFragment" />
+        <argument
+            android:name="taskDescription"
+            app:argType="string"
+            android:defaultValue="You have no task" />
+        <argument
+            android:name="priority"
+            app:argType="string"
+            android:defaultValue="D" />
     </fragment>
     <fragment
         android:id="@+id/taskFragment"
