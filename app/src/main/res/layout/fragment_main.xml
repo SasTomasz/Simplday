@@ -13,11 +13,27 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".fragment.MainFragment">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Here will be recyclerView with list of task adding by the user"
-            android:textSize="32sp" />
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/tv_task_description"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:textSize="32sp"
+                tools:text="Here will be recyclerView with list of task adding by the user" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/tv_priority"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:textSize="32sp"
+                tools:text="Priority" />
+        </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"

@@ -55,6 +55,7 @@ class TaskFragment : Fragment() {
         return when (item.itemId){
             R.id.menu_save -> {
                 Toast.makeText(context, "save clicked", Toast.LENGTH_SHORT).show()
+                navigateToMainFragment()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -63,15 +64,11 @@ class TaskFragment : Fragment() {
     }
 
     private fun navigateToMainFragment(){
-        var taskDescription = binding.etTaskName.toString()
-        var priority = binding.etPriority.toString()
-
-        /**
-         * todo 02 try to add simple data in task_fragment and receive it in main fragment using
-         * todo 02 safe args
-         *
-
-         */
+        val taskDescription = binding.etTaskName.text.toString()
+        val priority = binding.etPriority.text.toString()
+        val action = TaskFragmentDirections.
+            actionTaskFragmentToMainFragment(taskDescription, priority)
+        findNavController().navigate(action)
 
 
     }
