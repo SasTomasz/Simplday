@@ -1,21 +1,15 @@
-package com.example.android.simplday.fragment
+package com.example.android.simplday.fragment.task
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.EditText
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import com.example.android.simplday.MainActivity
 
 import com.example.android.simplday.R
-import com.example.android.simplday.TaskViewModel
-import com.example.android.simplday.databinding.FragmentMainBinding
 import com.example.android.simplday.databinding.FragmentTaskBinding
 
 /**
@@ -66,8 +60,11 @@ class TaskFragment : Fragment() {
     private fun navigateToMainFragment(){
         val taskDescription = binding.etTaskName.text.toString()
         val priority = binding.etPriority.text.toString()
-        val action = TaskFragmentDirections.
-            actionTaskFragmentToMainFragment(taskDescription, priority)
+        val action =
+            TaskFragmentDirections.actionTaskFragmentToMainFragment(
+                taskDescription,
+                priority
+            )
         findNavController().navigate(action)
 
 
