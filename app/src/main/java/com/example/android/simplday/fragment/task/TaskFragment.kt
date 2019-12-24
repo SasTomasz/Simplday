@@ -2,6 +2,7 @@ package com.example.android.simplday.fragment.task
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -11,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 
 import com.example.android.simplday.R
 import com.example.android.simplday.databinding.FragmentTaskBinding
+import com.example.android.simplday.fragment.main.SharedViewModel
 
 /**
  * A simple [Fragment] subclass.
@@ -19,7 +21,7 @@ class TaskFragment : Fragment() {
     private val EDIT_MODE: Int = 1
     private val VIEW_MODE: Int = 0
     private var mode: Int = VIEW_MODE
-    private lateinit var viewModel: TaskViewModel
+    private lateinit var viewModel: SharedViewModel
     private lateinit var binding: FragmentTaskBinding
 
     override fun onCreateView(
@@ -33,8 +35,10 @@ class TaskFragment : Fragment() {
         )
 
 
-        // Inflate the layout for this fragment
-        viewModel = ViewModelProviders.of(this).get(TaskViewModel::class.java)
+        Log.i("Task Fragment", "ViewModelProviders.of")
+        viewModel = activity?.run { ViewModelProviders.
+            of(this)[SharedViewModel::class.java] } ?: throw Exception("Invalid Activity")
+
         setHasOptionsMenu(true)
         return binding.root
     }
@@ -58,13 +62,10 @@ class TaskFragment : Fragment() {
     }
 
     private fun navigateToMainFragment(){
-        val taskDescription = binding.etTaskName.text.toString()
-        val priority = binding.etPriority.text.toString()
+        viewModel.taskDescription = binding.etTaskName.text.toString()
+        viewModel.priority = binding.etPriority.text.toString()
         val action =
-            TaskFragmentDirections.actionTaskFragmentToMainFragment(
-                taskDescription,
-                priority
-            )
+            TaskFragmentDirections.actionTaskFragmentToMainFragment()
         findNavController().navigate(action)
 
 

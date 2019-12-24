@@ -13,20 +13,12 @@ import com.example.android.simplday.fragment.task.TaskViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    // view model for sharing data between fragment in this activity
-    private lateinit var viewModel: TaskViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
-        // view model initial
-        Log.i("Task Fragment", "Call ViewModelProviders.of")
-        viewModel = ViewModelProviders.of(this).get(TaskViewModel::class.java)
-
-
 
         val navController = this.findNavController((R.id.myNavHostFragment))
         NavigationUI.setupActionBarWithNavController(this, navController)
