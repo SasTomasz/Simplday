@@ -1,14 +1,11 @@
 package com.example.android.simplday
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.example.android.simplday.fragment.task.TaskViewModel
 
 import kotlinx.android.synthetic.main.activity_main.*
 
