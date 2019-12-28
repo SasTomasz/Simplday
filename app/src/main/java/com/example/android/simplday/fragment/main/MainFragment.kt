@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 
@@ -36,17 +37,23 @@ class MainFragment : Fragment() {
             ViewModelProviders.of(this)[SharedViewModel::class.java]
         } ?: throw Exception("Invalid Activity")
 
+        viewModel.taskDescription.observe(this, Observer { newTaskDescription ->
+            binding.tvTaskDescription.text = newTaskDescription
+        })
+        viewModel.priority.observe(this, Observer { newPriority ->
+            binding.tvPriority.text = newPriority
+        })
+
         binding.fab.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_mainFragment_to_taskFragment)
         }
-
-        binding.tvTaskDescription.text = viewModel.taskDescription
-        binding.tvPriority.text = viewModel.priority
-
         return binding.root
 
 
         /**
+         * todo 1-3 using task class in app
+         * todo 1-4 hide keyboard when navigate to MainFragment from TaskFragment
+         *
          * todo 0-1 create mode in Task fragment for show only and editing (maybe double click)
          * todo 0-2 check if Main fragment is navigate from TaskFragment
          */
