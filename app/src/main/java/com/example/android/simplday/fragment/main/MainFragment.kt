@@ -49,8 +49,6 @@ class MainFragment : Fragment() {
 
 
         /**
-         * todo 1-3 using task class in app
-         * todo 1-4 hide keyboard when navigate to MainFragment from TaskFragment
          * todo 1-5 start new codelab Android Kotlin Fundamentals 05.3: Data binding with
          * todo 1-5 ViewModel and LiveData
          *

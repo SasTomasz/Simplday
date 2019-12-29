@@ -15,8 +15,6 @@ class SharedViewModel: ViewModel() {
     val task: LiveData<Task>
         get() = _task
 
-    // todo continue use Task.class
-
     init {
         Log.i("SharedViewModel", "View model created")
     }

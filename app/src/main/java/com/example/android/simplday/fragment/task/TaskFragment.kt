@@ -1,9 +1,11 @@
 package com.example.android.simplday.fragment.task
 
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -54,6 +56,7 @@ class TaskFragment : Fragment() {
             R.id.menu_save -> {
                 Toast.makeText(context, "save clicked", Toast.LENGTH_SHORT).show()
                 navigateToMainFragment()
+                hideSoftKeyboard(view!!)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -70,7 +73,15 @@ class TaskFragment : Fragment() {
         val action =
             TaskFragmentDirections.actionTaskFragmentToMainFragment()
         findNavController().navigate(action)
+    }
 
-
+    /**
+     * hide soft keyboard
+     * @param view is active fragment view
+     */
+    private fun hideSoftKeyboard(view: View){
+        val imm = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE)
+                as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }
