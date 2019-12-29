@@ -37,11 +37,9 @@ class MainFragment : Fragment() {
             ViewModelProviders.of(this)[SharedViewModel::class.java]
         } ?: throw Exception("Invalid Activity")
 
-        viewModel.taskDescription.observe(this, Observer { newTaskDescription ->
-            binding.tvTaskDescription.text = newTaskDescription
-        })
-        viewModel.priority.observe(this, Observer { newPriority ->
-            binding.tvPriority.text = newPriority
+        viewModel.task.observe(this, Observer { newTask ->
+            binding.tvTaskDescription.text = newTask.taskName
+            binding.tvPriority.text = newTask.priority
         })
 
         binding.fab.setOnClickListener { view ->
@@ -53,6 +51,8 @@ class MainFragment : Fragment() {
         /**
          * todo 1-3 using task class in app
          * todo 1-4 hide keyboard when navigate to MainFragment from TaskFragment
+         * todo 1-5 start new codelab Android Kotlin Fundamentals 05.3: Data binding with
+         * todo 1-5 ViewModel and LiveData
          *
          * todo 0-1 create mode in Task fragment for show only and editing (maybe double click)
          * todo 0-2 check if Main fragment is navigate from TaskFragment

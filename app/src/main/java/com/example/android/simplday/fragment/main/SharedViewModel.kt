@@ -4,20 +4,18 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.android.simplday.model.Task
 
 /**
  * This is class for sharing data in Main Activity
  */
 class SharedViewModel: ViewModel() {
     // description of task
-    private val _taskDescription = MutableLiveData<String>("There is no task")
-    val taskDescription: LiveData<String>
-        get() = _taskDescription
+    private val _task = MutableLiveData<Task>(Task())
+    val task: LiveData<Task>
+        get() = _task
 
-    // priority od task
-    private val _priority = MutableLiveData<String>("C")
-    val priority: LiveData<String>
-        get() = _priority
+    // todo continue use Task.class
 
     init {
         Log.i("SharedViewModel", "View model created")
@@ -34,7 +32,7 @@ class SharedViewModel: ViewModel() {
      * @param priority is priority of current task
      */
     fun onSaveNewTask(taskDescription: String, priority: String){
-        _taskDescription.value = taskDescription
-        _priority.value = priority
+        _task.value?.taskName = taskDescription
+        _task.value?.priority = priority
     }
 }
