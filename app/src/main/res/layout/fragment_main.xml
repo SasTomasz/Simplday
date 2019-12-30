@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="sharedViewModel"
+            type="com.example.android.simplday.fragment.main.SharedViewModel" />
 
     </data>
 
@@ -19,16 +22,16 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
                 android:id="@+id/tv_task_description"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:textSize="32sp"
                 tools:text="Here will be recyclerView with list of task adding by the user" />
 
             <TextView
-                android:layout_width="wrap_content"
                 android:id="@+id/tv_priority"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:textSize="32sp"

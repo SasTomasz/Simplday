@@ -37,6 +37,10 @@ class MainFragment : Fragment() {
             ViewModelProviders.of(this)[SharedViewModel::class.java]
         } ?: throw Exception("Invalid Activity")
 
+        binding.lifecycleOwner = this
+        binding.sharedViewModel = viewModel
+//        todo continue bind fragment_main.xml directly with viewModel
+
         viewModel.task.observe(this, Observer { newTask ->
             binding.tvTaskDescription.text = newTask.taskName
             binding.tvPriority.text = newTask.priority
@@ -49,8 +53,10 @@ class MainFragment : Fragment() {
 
 
         /**
-         * todo 1-5 start new codelab Android Kotlin Fundamentals 05.3: Data binding with
-         * todo 1-5 ViewModel and LiveData
+         * todo 2-1 think is there need to pass click handler from the fragments associated with
+         * todo 2-1 this viewmodel here (I know now there is need to do this ;)
+         *
+         * todo 3-1 start next codelab Android Kotlin Fundamentals 05.4: LiveData transformations
          *
          * todo 0-1 create mode in Task fragment for show only and editing (maybe double click)
          * todo 0-2 check if Main fragment is navigate from TaskFragment
