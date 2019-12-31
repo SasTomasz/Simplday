@@ -32,6 +32,7 @@ class MainFragment : Fragment() {
             inflater,
             R.layout.fragment_main, container, false
         )
+
         Log.i("MainFragment", "ViewModelProviders.of")
         viewModel = activity?.run {
             ViewModelProviders.of(this)[SharedViewModel::class.java]
@@ -39,27 +40,18 @@ class MainFragment : Fragment() {
 
         binding.lifecycleOwner = this
         binding.sharedViewModel = viewModel
-//        todo continue bind fragment_main.xml directly with viewModel
 
-        viewModel.task.observe(this, Observer { newTask ->
-            binding.tvTaskDescription.text = newTask.taskName
-            binding.tvPriority.text = newTask.priority
-        })
-
-        binding.fab.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_mainFragment_to_taskFragment)
-        }
         return binding.root
 
 
         /**
-         * todo 2-1 think is there need to pass click handler from the fragments associated with
-         * todo 2-1 this viewmodel here (I know now there is need to do this ;)
-         *
          * todo 3-1 start next codelab Android Kotlin Fundamentals 05.4: LiveData transformations
          *
          * todo 0-1 create mode in Task fragment for show only and editing (maybe double click)
          * todo 0-2 check if Main fragment is navigate from TaskFragment
+         *
+         * TODO at one time try to create class or classes for click handlers from fragments or
+         * TODO activities or even menus(if it's a good practice -> I don't know yet)
          */
 
 

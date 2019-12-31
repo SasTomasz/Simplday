@@ -27,7 +27,8 @@
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:textSize="32sp"
-                tools:text="Here will be recyclerView with list of task adding by the user" />
+                tools:text="Here will be recyclerView with list of task adding by the user"
+                android:text="@{sharedViewModel.task.taskName}"/>
 
             <TextView
                 android:id="@+id/tv_priority"
@@ -35,7 +36,8 @@
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:textSize="32sp"
-                tools:text="Priority" />
+                tools:text="Priority"
+                android:text="@{sharedViewModel.task.priority}"/>
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -44,7 +46,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
-            app:srcCompat="@drawable/ic_add" />
+            app:srcCompat="@drawable/ic_add"
+            android:onClick="@{view -> sharedViewModel.onNavigate(view)}"/>
 
 
     </FrameLayout>
