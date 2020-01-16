@@ -45,7 +45,8 @@ class MainFragment : Fragment() {
 
 
         /**
-         * todo 3-1 start next codelab Android Kotlin Fundamentals 05.4: LiveData transformations
+         * todo 3-2 create database, DAO interface, Entity for database
+         * todo 3-3 test database
          *
          * todo 0-1 create mode in Task fragment for show only and editing (maybe double click)
          * todo 0-2 check if Main fragment is navigate from TaskFragment
