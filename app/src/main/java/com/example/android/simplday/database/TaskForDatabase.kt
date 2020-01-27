@@ -14,6 +14,4 @@ data class TaskForDatabase(
 
     @ColumnInfo(name = "task_priority")
     val taskPriority: String?
-
-    // todo continue with create database abstract class
 )

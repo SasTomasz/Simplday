@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="sharedViewModel"
-            type="com.example.android.simplday.fragment.main.SharedViewModel" />
+            name="mainViewModel"
+            type="com.example.android.simplday.fragment.main.MainViewModel" />
 
     </data>
 
@@ -28,7 +28,7 @@
                 android:padding="8dp"
                 android:textSize="32sp"
                 tools:text="Here will be recyclerView with list of task adding by the user"
-                android:text="@{sharedViewModel.task.taskName}"/>
+                android:text="@{mainViewModel.task.taskName}"/>
 
             <TextView
                 android:id="@+id/tv_priority"
@@ -37,7 +37,7 @@
                 android:padding="8dp"
                 android:textSize="32sp"
                 tools:text="Priority"
-                android:text="@{sharedViewModel.task.priority}"/>
+                android:text="@{mainViewModel.task.priority}"/>
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -47,7 +47,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
             app:srcCompat="@drawable/ic_add"
-            android:onClick="@{view -> sharedViewModel.onNavigate(view)}"/>
+            android:onClick="@{view -> mainViewModel.onNavigate(view)}"/>
 
 
     </FrameLayout>

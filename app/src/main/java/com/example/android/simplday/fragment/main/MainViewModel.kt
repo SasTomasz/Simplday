@@ -12,19 +12,19 @@ import com.example.android.simplday.model.Task
 /**
  * This is class for sharing data in Main Activity
  */
-class SharedViewModel: ViewModel() {
+class MainViewModel : ViewModel() {
     // description of task
     private val _task = MutableLiveData<Task>(Task())
     val task: LiveData<Task>
         get() = _task
 
     init {
-        Log.i("SharedViewModel", "View model created")
+        Log.i("MainViewModel", "View model created")
     }
 
     override fun onCleared() {
         super.onCleared()
-        Log.i("SharedViewModel", "ViewModel destroyed")
+        Log.i("MainViewModel", "ViewModel destroyed")
     }
 
     /**
@@ -32,7 +32,7 @@ class SharedViewModel: ViewModel() {
      * @param taskDescription is description of current task
      * @param priority is priority of current task
      */
-    fun onSaveNewTask(taskDescription: String, priority: String){
+    fun onSaveNewTask(taskDescription: String, priority: String) {
         _task.value?.taskName = taskDescription
         _task.value?.priority = priority
     }
@@ -42,3 +42,13 @@ class SharedViewModel: ViewModel() {
 
     }
 }
+
+// todo refactor this view model to use it only with MainFragment, create viewmodel factory,
+//  check all usages in
+//  MainFragment,
+//  TaskFragment,
+//  fragment_main.xml
+
+// todo create viewmodel, viewmodelfactory with TaskFragment
+
+// todo for tests create safeargs and test if it pass data between Main and Task Fragments

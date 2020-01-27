@@ -11,20 +11,19 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-
 import com.example.android.simplday.R
+import com.example.android.simplday.database.TaskDao
+import com.example.android.simplday.database.TaskDatabase
 import com.example.android.simplday.databinding.FragmentTaskBinding
-import com.example.android.simplday.fragment.main.SharedViewModel
 
 /**
  * A simple [Fragment] subclass.
  */
 class TaskFragment : Fragment() {
-    private val EDIT_MODE: Int = 1
-    private val VIEW_MODE: Int = 0
-    private var mode: Int = VIEW_MODE
-    private lateinit var viewModel: SharedViewModel
+    private lateinit var viewModel: TaskViewModel
+    private lateinit var viewModelFactory: TaskViewModelFactory
     private lateinit var binding: FragmentTaskBinding
+    private lateinit var dataSource: TaskDao
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,10 +35,16 @@ class TaskFragment : Fragment() {
             R.layout.fragment_task, container, false
         )
 
+        val application = requireNotNull(this.activity).application
+
+        dataSource = TaskDatabase.getInstance(application).taskDatabaseDao
+
+        viewModelFactory = TaskViewModelFactory(dataSource)
+
 
         Log.i("Task Fragment", "ViewModelProviders.of")
-        viewModel = activity?.run { ViewModelProviders.
-            of(this)[SharedViewModel::class.java] } ?: throw Exception("Invalid Activity")
+        viewModel = ViewModelProviders.of(this, viewModelFactory)
+            .get(TaskViewModel::class.java)
 
         setHasOptionsMenu(true)
         return binding.root
@@ -50,9 +55,8 @@ class TaskFragment : Fragment() {
     }
 
 
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId){
+        return when (item.itemId) {
             R.id.menu_save -> {
                 Toast.makeText(context, "save clicked", Toast.LENGTH_SHORT).show()
                 navigateToMainFragment()
@@ -67,9 +71,11 @@ class TaskFragment : Fragment() {
     /**
      * Saving all data and navigate to MainFragment
      */
-    private fun navigateToMainFragment(){
-        viewModel.onSaveNewTask(binding.etTaskName.text.toString(),
-            binding.etPriority.text.toString())
+    private fun navigateToMainFragment() {
+//     todo   viewModel.onSaveNewTask(
+//            binding.etTaskName.text.toString(),
+//            binding.etPriority.text.toString()
+//        ) save data in database
         val action =
             TaskFragmentDirections.actionTaskFragmentToMainFragment()
         findNavController().navigate(action)
@@ -79,7 +85,7 @@ class TaskFragment : Fragment() {
      * hide soft keyboard
      * @param view is active fragment view
      */
-    private fun hideSoftKeyboard(view: View){
+    private fun hideSoftKeyboard(view: View) {
         val imm = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE)
                 as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
