@@ -72,10 +72,10 @@ class TaskFragment : Fragment() {
      * Saving all data and navigate to MainFragment
      */
     private fun navigateToMainFragment() {
-//     todo   viewModel.onSaveNewTask(
-//            binding.etTaskName.text.toString(),
-//            binding.etPriority.text.toString()
-//        ) save data in database
+        viewModel.onSaveNewTask(
+            binding.etTaskName.text.toString(),
+            binding.etPriority.text.toString()
+        )
         val action =
             TaskFragmentDirections.actionTaskFragmentToMainFragment()
         findNavController().navigate(action)
