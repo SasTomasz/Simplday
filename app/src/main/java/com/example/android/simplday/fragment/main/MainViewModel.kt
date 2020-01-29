@@ -4,15 +4,24 @@ import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
 import com.example.android.simplday.R
+import com.example.android.simplday.database.TaskDao
 import com.example.android.simplday.model.Task
+import com.example.android.simplday.stringListOfTasks
 
 /**
  * This is class for sharing data in Main Activity
  */
-class MainViewModel : ViewModel() {
+class MainViewModel(
+    val database: TaskDao
+) : ViewModel() {
+    private val listOfAllTasks = database.getAllTasks()
+    val formatListsOfAllTasks = Transformations.map(listOfAllTasks) { tasks ->
+        stringListOfTasks(tasks)
+    }
     // description of task
     private val _task = MutableLiveData<Task>(Task())
     val task: LiveData<Task>
@@ -27,16 +36,6 @@ class MainViewModel : ViewModel() {
         Log.i("MainViewModel", "ViewModel destroyed")
     }
 
-    /**
-     * Saving Task Value
-     * @param taskDescription is description of current task
-     * @param priority is priority of current task
-     */
-    fun onSaveNewTask(taskDescription: String, priority: String) {
-        _task.value?.taskName = taskDescription
-        _task.value?.priority = priority
-    }
-
     fun onNavigate(view: View) {
         view.findNavController().navigate(R.id.action_mainFragment_to_taskFragment)
 
@@ -48,7 +47,5 @@ class MainViewModel : ViewModel() {
 //  MainFragment,
 //  TaskFragment,
 //  fragment_main.xml
-
-// todo create viewmodel, viewmodelfactory with TaskFragment
 
 // todo for tests create safeargs and test if it pass data between Main and Task Fragments

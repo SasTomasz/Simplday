@@ -1,5 +1,6 @@
 package com.example.android.simplday.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -15,5 +16,8 @@ interface TaskDao {
 
     @Query("SELECT * FROM tasks_table WHERE taskId = :key")
     fun getTask(key: Long): TaskForDatabase
+
+    @Query("SELECT * FROM tasks_table ORDER BY taskId DESC")
+    fun getAllTasks(): LiveData<List<TaskForDatabase>>
 
 }

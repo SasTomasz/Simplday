@@ -3,14 +3,15 @@ package com.example.android.simplday.fragment.main
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-
 import com.example.android.simplday.R
+import com.example.android.simplday.database.TaskDao
+import com.example.android.simplday.database.TaskDatabase
 import com.example.android.simplday.databinding.FragmentMainBinding
 
 /**
@@ -19,6 +20,8 @@ import com.example.android.simplday.databinding.FragmentMainBinding
 class MainFragment : Fragment() {
     // ViewModel for sharing data in MainActivity
     lateinit var viewModel: MainViewModel
+    lateinit var viewModelFactory: MainViewModelFactory
+    lateinit var database: TaskDao
 
 
     override fun onCreateView(
@@ -31,10 +34,13 @@ class MainFragment : Fragment() {
             R.layout.fragment_main, container, false
         )
 
+        val application = requireNotNull(this.activity).application
+        database = TaskDatabase.getInstance(application).taskDatabaseDao
+
         Log.i("MainFragment", "ViewModelProviders.of")
-        viewModel = activity?.run {
-            ViewModelProviders.of(this)[MainViewModel::class.java]
-        } ?: throw Exception("Invalid Activity")
+        viewModelFactory = MainViewModelFactory(database)
+        viewModel = ViewModelProviders.of(this, viewModelFactory)
+            .get(MainViewModel::class.java)
 
         binding.lifecycleOwner = this
         binding.mainViewModel = viewModel
