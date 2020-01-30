@@ -17,7 +17,7 @@ import com.example.android.simplday.database.TaskDatabase
 import com.example.android.simplday.databinding.FragmentTaskBinding
 
 /**
- * A simple [Fragment] subclass.
+ * Fragment for updating and adding tasks
  */
 class TaskFragment : Fragment() {
     private lateinit var viewModel: TaskViewModel

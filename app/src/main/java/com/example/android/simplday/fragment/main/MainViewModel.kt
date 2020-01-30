@@ -2,18 +2,15 @@ package com.example.android.simplday.fragment.main
 
 import android.util.Log
 import android.view.View
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
 import com.example.android.simplday.R
 import com.example.android.simplday.database.TaskDao
-import com.example.android.simplday.model.Task
 import com.example.android.simplday.stringListOfTasks
 
 /**
- * This is class for sharing data in Main Activity
+ * This is ViewModel class for MainFragment
  */
 class MainViewModel(
     val database: TaskDao
@@ -22,14 +19,10 @@ class MainViewModel(
     val formatListsOfAllTasks = Transformations.map(listOfAllTasks) { tasks ->
         stringListOfTasks(tasks)
     }
-    // description of task
-    private val _task = MutableLiveData<Task>(Task())
-    val task: LiveData<Task>
-        get() = _task
-
-    init {
-        Log.i("MainViewModel", "View model created")
-    }
+    // description of task todo check if this vars needed
+//    private val _task = MutableLiveData<Task>(Task())
+//    val task: LiveData<Task>
+//        get() = _task
 
     override fun onCleared() {
         super.onCleared()
@@ -41,11 +34,3 @@ class MainViewModel(
 
     }
 }
-
-// todo refactor this view model to use it only with MainFragment, create viewmodel factory,
-//  check all usages in
-//  MainFragment,
-//  TaskFragment,
-//  fragment_main.xml
-
-// todo for tests create safeargs and test if it pass data between Main and Task Fragments

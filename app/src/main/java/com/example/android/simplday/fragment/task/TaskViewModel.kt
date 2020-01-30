@@ -36,8 +36,6 @@ class TaskViewModel(
         viewModelJob.cancel()
     }
 
-    // todo continue with fetching data and show it in Main. For now try do something with
-    //  String builder to see data
 
     // todo try to update data but after getting knowledge about recyclerView
 

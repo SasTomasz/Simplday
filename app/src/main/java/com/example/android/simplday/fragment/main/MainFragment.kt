@@ -2,7 +2,6 @@ package com.example.android.simplday.fragment.main
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,6 @@ import com.example.android.simplday.databinding.FragmentMainBinding
  * A simple [Fragment] subclass.
  */
 class MainFragment : Fragment() {
-    // ViewModel for sharing data in MainActivity
     lateinit var viewModel: MainViewModel
     lateinit var viewModelFactory: MainViewModelFactory
     lateinit var database: TaskDao
@@ -37,7 +35,6 @@ class MainFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         database = TaskDatabase.getInstance(application).taskDatabaseDao
 
-        Log.i("MainFragment", "ViewModelProviders.of")
         viewModelFactory = MainViewModelFactory(database)
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(MainViewModel::class.java)

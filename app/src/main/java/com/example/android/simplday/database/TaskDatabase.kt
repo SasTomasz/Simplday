@@ -29,5 +29,5 @@ abstract class TaskDatabase : RoomDatabase() {
             }
         }
     } //todo in free moment get more knowledge about @Volatile annotation, synchronized,
-        // todo fallbackToDescructiveMigration, Singleton
+    // todo fallbackToDescructiveMigration, Singleton
 }

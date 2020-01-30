@@ -14,9 +14,15 @@ interface TaskDao {
     @Delete
     fun deleteTask(task: TaskForDatabase)
 
+    /**
+     * @return task with specific id
+     */
     @Query("SELECT * FROM tasks_table WHERE taskId = :key")
     fun getTask(key: Long): TaskForDatabase
 
+    /**
+     * @return List of tasks from last one to first one
+     */
     @Query("SELECT * FROM tasks_table ORDER BY taskId DESC")
     fun getAllTasks(): LiveData<List<TaskForDatabase>>
 

@@ -4,6 +4,11 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * @param taskId is ID of task
+ * @param taskName is Title of task
+ * @param taskPriority is priority of tasks (A, B, C or D)
+ */
 @Entity(tableName = "tasks_table")
 data class TaskForDatabase(
     @PrimaryKey(autoGenerate = true)

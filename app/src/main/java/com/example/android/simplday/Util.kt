@@ -6,6 +6,11 @@ import android.text.Spanned
 import androidx.core.text.HtmlCompat
 import com.example.android.simplday.database.TaskForDatabase
 
+/**
+ * It creates string
+ * @param tasks is List of Tasks from database
+ * @return text for TextView to my tests purposes before I'll create RecyclerView
+ */
 fun stringListOfTasks(tasks: List<TaskForDatabase>): Spanned {
     val sb = StringBuilder()
     sb.apply {
@@ -24,3 +29,6 @@ fun stringListOfTasks(tasks: List<TaskForDatabase>): Spanned {
 }
 
 // todo clean code, add comments at least to all methods in all classes
+
+// todo in free moment see more about spanned at
+//  https://stackoverflow.com/questions/17546955/android-spanned-spannedstring-spannable-spannablestring-and-charsequence
