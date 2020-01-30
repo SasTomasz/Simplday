@@ -28,7 +28,8 @@ fun stringListOfTasks(tasks: List<TaskForDatabase>): Spanned {
     }
 }
 
-// todo clean code, add comments at least to all methods in all classes
+// todo clean code, add comments at least to all methods in all classes -> try to do this every
+//  time you create new method or classes
 
 // todo in free moment see more about spanned at
 //  https://stackoverflow.com/questions/17546955/android-spanned-spannedstring-spannable-spannablestring-and-charsequence

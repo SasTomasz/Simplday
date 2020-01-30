@@ -19,10 +19,6 @@ class MainViewModel(
     val formatListsOfAllTasks = Transformations.map(listOfAllTasks) { tasks ->
         stringListOfTasks(tasks)
     }
-    // description of task todo check if this vars needed
-//    private val _task = MutableLiveData<Task>(Task())
-//    val task: LiveData<Task>
-//        get() = _task
 
     override fun onCleared() {
         super.onCleared()
