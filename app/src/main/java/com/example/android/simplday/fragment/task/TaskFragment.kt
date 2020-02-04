@@ -81,6 +81,10 @@ class TaskFragment : Fragment() {
         findNavController().navigate(action)
     }
 
+    // todo find knowledge about how to doing with menu items. In layout when user tap button ui
+    //  controller only have info about where navigate. When info is in viewModel. Is there any
+    //  good practice for this? Try to looking for another apps like sunflower.
+
     /**
      * hide soft keyboard
      * @param view is active fragment view
