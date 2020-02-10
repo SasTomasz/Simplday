@@ -41,6 +41,13 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(MainViewModel::class.java)
 
+        val adapter = RecyclerViewAdapter()
+        binding.recyclerView.adapter = adapter
+
+        viewModel.listOfAllTasks.observe(this, Observer {
+            adapter.data = it
+        })
+
         binding.lifecycleOwner = this
         binding.mainViewModel = viewModel
 
@@ -57,6 +64,8 @@ class MainFragment : Fragment() {
 
 
         /**
+         * todo 6-1 add recyclerView
+         *
          * todo 5-1 ensure correctly app navigation trigger with viewModels
          *
          * todo 4-1 use coroutines with database -> ensure that all operations on database

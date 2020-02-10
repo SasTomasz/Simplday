@@ -16,29 +16,11 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".fragment.main.MainFragment">
 
-        <ScrollView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_task_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:textSize="32sp"
-                tools:text="Here will be recyclerView with list of task adding by the user"
-                android:text="@{mainViewModel.formatListsOfAllTasks}" />
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/tv_priority"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:padding="8dp"-->
-            <!--                android:textSize="32sp"-->
-            <!--                tools:text="Priority"-->
-            <!--                android:text="@{mainViewModel.task.priority}"/>-->
-        </ScrollView>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"></androidx.recyclerview.widget.RecyclerView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"

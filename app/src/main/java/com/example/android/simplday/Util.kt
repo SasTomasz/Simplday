@@ -10,6 +10,8 @@ import com.example.android.simplday.database.TaskForDatabase
  * It creates string
  * @param tasks is List of Tasks from database
  * @return text for TextView to my tests purposes before I'll create RecyclerView
+ *
+ * todo after created recyclerView I don't need it. Delete unused code
  */
 fun stringListOfTasks(tasks: List<TaskForDatabase>): Spanned {
     val sb = StringBuilder()
