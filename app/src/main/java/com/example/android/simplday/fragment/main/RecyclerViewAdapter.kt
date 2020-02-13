@@ -1,35 +1,30 @@
 package com.example.android.simplday.fragment.main
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.simplday.R
 import com.example.android.simplday.database.TaskForDatabase
+import com.example.android.simplday.databinding.TaskItemBinding
 import com.example.android.simplday.fragment.main.RecyclerViewAdapter.ViewHolder.Companion.from
 
-class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
-    var data = listOf<TaskForDatabase>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+class RecyclerViewAdapter :
+    ListAdapter<TaskForDatabase, RecyclerViewAdapter.ViewHolder>(TaskForDatabaseDiffCallback()) {
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val taskName: TextView = itemView.findViewById(R.id.tv_task_description)
-        val priority: TextView = itemView.findViewById(R.id.tv_priority)
+    class ViewHolder private constructor(val binding: TaskItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: TaskForDatabase) {
-            priority.text = item.taskPriority
-            taskName.text = item.taskName
+            binding.tvPriority.text = item.taskPriority
+            binding.tvTaskDescription.text = item.taskName
         }
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater.inflate(R.layout.task_item, parent, false)
-                return ViewHolder(view)
+                val binding = TaskItemBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
             }
         }
     }
@@ -38,12 +33,19 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
         return from(parent)
     }
 
-    override fun getItemCount(): Int {
-        return data.size
-    }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data[position]
+        val item = getItem(position)
         holder.bind(item)
     }
+}
+
+class TaskForDatabaseDiffCallback : DiffUtil.ItemCallback<TaskForDatabase>() {
+    override fun areItemsTheSame(oldItem: TaskForDatabase, newItem: TaskForDatabase): Boolean {
+        return oldItem.taskId == newItem.taskId
+    }
+
+    override fun areContentsTheSame(oldItem: TaskForDatabase, newItem: TaskForDatabase): Boolean {
+        return oldItem == newItem
+    }
+
 }

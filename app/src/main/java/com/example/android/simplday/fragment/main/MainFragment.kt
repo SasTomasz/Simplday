@@ -45,7 +45,9 @@ class MainFragment : Fragment() {
         binding.recyclerView.adapter = adapter
 
         viewModel.listOfAllTasks.observe(this, Observer {
-            adapter.data = it
+            it?.let {
+                adapter.submitList(it)
+            }
         })
 
         binding.lifecycleOwner = this
@@ -64,7 +66,7 @@ class MainFragment : Fragment() {
 
 
         /**
-         * todo 6-1 add recyclerView
+         * todo 6-2 use DiffUtil and Data Binding with RecyclerView
          *
          * todo 5-1 ensure correctly app navigation trigger with viewModels
          *
