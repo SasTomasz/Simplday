@@ -2,9 +2,11 @@ package com.example.android.simplday.fragment.main
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -41,7 +43,12 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(MainViewModel::class.java)
 
-        val adapter = RecyclerViewAdapter()
+        val adapter = RecyclerViewAdapter(TaskListener { taskId ->
+            viewModel.onClickTaskItem(taskId)
+            Log.i("MainFragment adapter", "onClickTaskItem")
+        })
+
+
         binding.recyclerView.adapter = adapter
 
         viewModel.listOfAllTasks.observe(this, Observer {
@@ -60,6 +67,15 @@ class MainFragment : Fragment() {
                     .navigate(MainFragmentDirections.actionMainFragmentToTaskFragment())
                 viewModel.doneNavigating()
             }
+        })
+
+        //observe when current item in recycler was clicked
+        viewModel.navigateToDetail.observe(this, Observer { taskId ->
+            taskId?.let {
+                Toast.makeText(context, "you click task number $it", Toast.LENGTH_LONG).show()
+            }
+            viewModel.onDetailNavigated()
+
         })
 
         return binding.root

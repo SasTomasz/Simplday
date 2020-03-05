@@ -8,12 +8,17 @@
         <variable
             name="task"
             type="com.example.android.simplday.database.TaskForDatabase" />
+        <variable
+            name="clickListener"
+            type="com.example.android.simplday.fragment.main.TaskListener" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(task)}">
+
 
 
         <TextView
@@ -38,3 +43,6 @@
             tools:text="TaskTitle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+
+<!--todo fix this: Parameter specified as non-null is null:
+        method kotlin.jvm.internal.Intrinsics.checkParameterIsNotNull, parameter task-->

@@ -18,6 +18,10 @@ class MainViewModel(
     val navigateToTask: LiveData<Boolean>
         get() = _navigateToTask
 
+    private val _navigateToDetail = MutableLiveData<Long?>()
+    val navigateToDetail: LiveData<Long?>
+        get() = _navigateToDetail
+
     override fun onCleared() {
         super.onCleared()
         Log.i("MainViewModel", "ViewModel destroyed")
@@ -29,6 +33,14 @@ class MainViewModel(
 
     fun startNavigating() {
         _navigateToTask.value = true
+    }
+
+    fun onClickTaskItem(taskId: Long?){
+        _navigateToDetail.value = taskId
+    }
+
+    fun onDetailNavigated(){
+        _navigateToDetail.value = null
     }
 
 

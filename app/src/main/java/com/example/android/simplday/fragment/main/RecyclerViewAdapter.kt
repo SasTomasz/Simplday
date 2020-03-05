@@ -9,15 +9,17 @@ import com.example.android.simplday.database.TaskForDatabase
 import com.example.android.simplday.databinding.TaskItemBinding
 import com.example.android.simplday.fragment.main.RecyclerViewAdapter.ViewHolder.Companion.from
 
-class RecyclerViewAdapter :
+class RecyclerViewAdapter(val clicklistener: TaskListener) :
     ListAdapter<TaskForDatabase, RecyclerViewAdapter.ViewHolder>(TaskForDatabaseDiffCallback()) {
 
     class ViewHolder private constructor(val binding: TaskItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: TaskForDatabase) {
-            binding.tvPriority.text = item.taskPriority
-            binding.tvTaskDescription.text = item.taskName
+        fun bind(item: TaskForDatabase?, clicklistener: TaskListener?) {
+            binding.tvPriority.text = item?.let { item.taskPriority }
+            binding.tvTaskDescription.text = item?.let { item.taskName }
+            binding.clickListener = clicklistener?.let { clicklistener }
+            binding.executePendingBindings()
         }
 
         companion object {
@@ -34,8 +36,8 @@ class RecyclerViewAdapter :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(item)
+        val item: TaskForDatabase = getItem(position)!!
+            holder.bind(item, clicklistener)
     }
 }
 
@@ -49,3 +51,8 @@ class TaskForDatabaseDiffCallback : DiffUtil.ItemCallback<TaskForDatabase>() {
     }
 
 }
+
+class TaskListener (val clickListener: (taskId: Long) -> Unit){
+    fun onClick(task: TaskForDatabase) = clickListener(task.taskId)
+}
+// todo continue create clicklistener and make it work (for start let it show toast message)
