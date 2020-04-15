@@ -15,10 +15,11 @@ class RecyclerViewAdapter(val clicklistener: TaskListener) :
     class ViewHolder private constructor(val binding: TaskItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: TaskForDatabase?, clicklistener: TaskListener?) {
-            binding.tvPriority.text = item?.let { item.taskPriority }
-            binding.tvTaskDescription.text = item?.let { item.taskName }
-            binding.clickListener = clicklistener?.let { clicklistener }
+        fun bind(item: TaskForDatabase, clicklistener: TaskListener) {
+//            binding.tvPriority.text = item.taskPriority
+//            binding.tvTaskDescription.text = item.taskName
+            binding.task = item
+            binding.clickListener = clicklistener
             binding.executePendingBindings()
         }
 
@@ -36,7 +37,7 @@ class RecyclerViewAdapter(val clicklistener: TaskListener) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item: TaskForDatabase = getItem(position)!!
+        val item = getItem(position)!!
             holder.bind(item, clicklistener)
     }
 }

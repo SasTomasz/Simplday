@@ -30,7 +30,8 @@
             android:layout_marginRight="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="A" />
+            tools:text="A"
+            android:text="@{task.taskPriority.toString()}"/>
 
         <TextView
             android:id="@+id/tv_task_description"
@@ -40,7 +41,8 @@
             app:layout_constraintEnd_toStartOf="@+id/tv_priority"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="TaskTitle" />
+            tools:text="TaskTitle"
+            android:text="@{task.taskName.toString()}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

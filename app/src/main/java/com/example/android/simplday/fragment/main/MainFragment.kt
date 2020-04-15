@@ -43,8 +43,11 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(MainViewModel::class.java)
 
+        binding.lifecycleOwner = this
+        binding.mainViewModel = viewModel
+
         val adapter = RecyclerViewAdapter(TaskListener { taskId ->
-            viewModel.onClickTaskItem(taskId)
+            Toast.makeText(context, "${taskId}", Toast.LENGTH_LONG).show()
             Log.i("MainFragment adapter", "onClickTaskItem")
         })
 
@@ -57,8 +60,6 @@ class MainFragment : Fragment() {
             }
         })
 
-        binding.lifecycleOwner = this
-        binding.mainViewModel = viewModel
 
         // observe when navigate to TaskFragment
         viewModel.navigateToTask.observe(this, Observer {
