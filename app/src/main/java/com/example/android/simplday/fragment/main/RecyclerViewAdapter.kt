@@ -20,6 +20,8 @@ class RecyclerViewAdapter :
             binding.tvTaskDescription.text = item.taskName
         }
 
+        // todo 2020-03-05 make recycler adapter without databinding
+
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
